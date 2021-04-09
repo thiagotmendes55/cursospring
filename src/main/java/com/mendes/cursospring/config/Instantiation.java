@@ -7,8 +7,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import com.mendes.cursospring.domain.Categoria;
+import com.mendes.cursospring.domain.Cidade;
+import com.mendes.cursospring.domain.Estado;
 import com.mendes.cursospring.domain.Produto;
 import com.mendes.cursospring.repositories.CategoriaRepository;
+import com.mendes.cursospring.repositories.CidadeRepository;
+import com.mendes.cursospring.repositories.EstadoRepository;
 import com.mendes.cursospring.repositories.ProdutoRepository;
 
 @Configuration
@@ -19,6 +23,12 @@ public class Instantiation implements CommandLineRunner {
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private EstadoRepository estadoRepository;
+	
+	@Autowired
+	private CidadeRepository cidadeRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -38,6 +48,19 @@ public class Instantiation implements CommandLineRunner {
 		
 		categoriaRepository.saveAll(Arrays.asList(c1, c2));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
+
+		Estado e1 = new Estado(null, "Minas Gerais");
+		Estado e2 = new Estado(null, "São Paulo");
+		
+		Cidade cid1 = new Cidade(null, "Uberlândia", e1);
+		Cidade cid2 = new Cidade(null, "São Paulo", e2);
+		Cidade cid3 = new Cidade(null, "Campinas", e2);
+		
+		e1.getCidades().addAll(Arrays.asList(cid1));
+		e2.getCidades().addAll(Arrays.asList(cid2, cid3));
+		
+		estadoRepository.saveAll(Arrays.asList(e1, e2));
+		cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3));
 	}
 
 }
