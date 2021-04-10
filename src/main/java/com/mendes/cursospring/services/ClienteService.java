@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mendes.cursospring.domain.Cidade;
 import com.mendes.cursospring.domain.Cliente;
@@ -39,6 +40,7 @@ public class ClienteService {
 		return cliente.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
 
+	@Transactional
 	public Cliente insert(Cliente obj) {
 		obj.setId(null);
 		try {
