@@ -34,4 +34,12 @@ public class CategoriaResource {
 	 	URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 	 	return ResponseEntity.created(uri).build();
 	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+	public ResponseEntity<Void> update(@PathVariable(name = "id") Integer id, @RequestBody Categoria obj) {
+		obj.setId(id);
+		obj = service.update(obj);
+		
+		return ResponseEntity.noContent().build();
+	}
 }
