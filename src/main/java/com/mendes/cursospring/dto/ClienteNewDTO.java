@@ -2,20 +2,41 @@ package com.mendes.cursospring.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+import com.mendes.cursospring.services.validation.ClienteInsert;
+
+@ClienteInsert
 public class ClienteNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@NotEmpty(message = "O campo não pode ser vazio")
+	@Size(min = 5, max = 100, message = "Nome tem que ter entre 5 e 100 caracteres")
 	private String nome;
+
+	@NotEmpty(message = "O campo não pode ser vazio")
+	@Email(message = "Email inválido")
 	private String email;
+
+	@NotEmpty(message = "O campo não pode ser vazio")
 	private String cpfOuCnpj;
 	private Integer tipo;
 
-	private String Logradouro;
+	@NotEmpty(message = "O campo não pode ser vazio")
+	private String logradouro;
+
+	@NotEmpty(message = "O campo não pode ser vazio")
 	private String numero;
+	
 	private String complemento;
 	private String bairro;
+
+	@NotEmpty(message = "O campo não pode ser vazio")
 	private String cep;
 	
+	@NotEmpty(message = "O campo não pode ser vazio")
 	private String telefone1;
 	private String telefone2;
 	private String telefone3;
@@ -34,7 +55,7 @@ public class ClienteNewDTO implements Serializable {
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
 		this.tipo = tipo;
-		Logradouro = logradouro;
+		this.logradouro = logradouro;
 		this.numero = numero;
 		this.complemento = complemento;
 		this.bairro = bairro;
@@ -78,11 +99,11 @@ public class ClienteNewDTO implements Serializable {
 	}
 
 	public String getLogradouro() {
-		return Logradouro;
+		return logradouro;
 	}
 
 	public void setLogradouro(String logradouro) {
-		Logradouro = logradouro;
+		this.logradouro = logradouro;
 	}
 
 	public String getNumero() {
