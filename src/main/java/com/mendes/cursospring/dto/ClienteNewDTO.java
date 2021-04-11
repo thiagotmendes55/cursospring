@@ -23,6 +23,9 @@ public class ClienteNewDTO implements Serializable {
 	@NotEmpty(message = "O campo não pode ser vazio")
 	private String cpfOuCnpj;
 	private Integer tipo;
+	
+	@NotEmpty(message = "O campo não pode ser vazio")
+	private String senha;
 
 	@NotEmpty(message = "O campo não pode ser vazio")
 	private String logradouro;
@@ -98,6 +101,14 @@ public class ClienteNewDTO implements Serializable {
 		this.tipo = tipo;
 	}
 
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}	
+
 	public String getLogradouro() {
 		return logradouro;
 	}
@@ -168,5 +179,5 @@ public class ClienteNewDTO implements Serializable {
 
 	public void setCidadeId(Integer cidadeId) {
 		this.cidadeId = cidadeId;
-	}	
+	}
 }
